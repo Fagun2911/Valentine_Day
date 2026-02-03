@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>For My Khushi ❤️</title>
 
 <style>
@@ -30,16 +29,13 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 color:white;
-font-size:28px;
 text-align:center;
 opacity:0;
-pointer-events:none;
-transition:1.5s;
+transition:2s;
 }
 
 .active{
 opacity:1;
-pointer-events:auto;
 }
 
 /* PASSWORD */
@@ -78,9 +74,10 @@ border-radius:30px;
 background:#ff2e6e;
 color:white;
 font-weight:bold;
+cursor:pointer;
 }
 
-/* BACKGROUND IMAGES */
+/* BACKGROUND IMAGE */
 
 .bg{
 position:absolute;
@@ -88,12 +85,12 @@ width:100%;
 height:100%;
 object-fit:cover;
 z-index:-2;
-animation:zoom 12s ease-in-out infinite alternate;
+animation:zoom 14s ease-in-out infinite alternate;
 }
 
 @keyframes zoom{
 from{transform:scale(1)}
-to{transform:scale(1.15)}
+to{transform:scale(1.18)}
 }
 
 .overlay{
@@ -104,21 +101,41 @@ background:rgba(0,0,0,.55);
 z-index:-1;
 }
 
-/* FLOATING IMAGES */
+/* TEXT */
+
+.text{
+font-size:38px;
+max-width:900px;
+padding:20px;
+text-shadow:0 0 20px black;
+}
+
+@media(max-width:768px){
+.text{font-size:24px}
+}
+
+/* FLOATING MEMORIES */
 
 .float{
 position:absolute;
-width:140px;
-border-radius:18px;
-animation:float 10s linear infinite;
+width:150px;
+border-radius:20px;
+animation:float 12s linear infinite;
 }
 
 @keyframes float{
-from{transform:translateY(100vh)}
+from{transform:translateY(110vh)}
 to{transform:translateY(-120vh)}
 }
 
-/* FLIP CARD */
+/* FLIP CARDS */
+
+.flipWrap{
+display:flex;
+gap:60px;
+flex-wrap:wrap;
+justify-content:center;
+}
 
 .flip{
 width:260px;
@@ -134,11 +151,11 @@ transform-style:preserve-3d;
 transition:1.5s;
 }
 
-.flip-inner.flipped{
+.flipped{
 transform:rotateY(180deg);
 }
 
-.front, .back{
+.front,.back{
 position:absolute;
 width:100%;
 height:100%;
@@ -165,12 +182,20 @@ font-size:20px;
 color:#ffb3c6;
 }
 
+/* FINAL */
+
+#love{
+font-size:75px;
+color:#ff2e6e;
+text-shadow:0 0 40px red;
+}
+
 /* HEART EXPLOSION */
 
 .heart{
 position:absolute;
 font-size:30px;
-animation:explode 2s forwards;
+animation:explode 2.2s forwards;
 }
 
 @keyframes explode{
@@ -180,12 +205,12 @@ opacity:0;
 }
 }
 
-/* METEORS */
+/* METEOR */
 
 .meteor{
 position:absolute;
 width:3px;
-height:120px;
+height:140px;
 background:linear-gradient(pink,red,transparent);
 animation:meteor 2s linear infinite;
 }
@@ -193,13 +218,6 @@ animation:meteor 2s linear infinite;
 @keyframes meteor{
 from{transform:translateY(-200px)}
 to{transform:translateY(100vh) translateX(-300px);opacity:0;}
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-.slide{font-size:20px;padding:20px}
-.flip{width:200px;height:300px}
 }
 
 </style>
@@ -225,13 +243,12 @@ to{transform:translateY(100vh) translateX(-300px);opacity:0;}
 <!-- SLIDE 1 -->
 
 <div class="slide active">
-<img src="us.jpg" class="bg">
+<img src="us.jpeg" class="bg">
 <div class="overlay"></div>
 
-<div>
-Some people come into life…  
-<br><br>
-<strong>You became my life ❤️</strong>
+<div class="text">
+Some people enter life…<br><br>
+<strong>You became my forever ❤️</strong>
 </div>
 </div>
 
@@ -241,39 +258,37 @@ Some people come into life…
 <img src="us2.jpg" class="bg">
 <div class="overlay"></div>
 
-<div>
+<div class="text">
 तेरे आने से मेरी ज़िंदगी को नया मुकाम मिल गया,<br>
 सूने रास्तों पर जैसे खुशियों का पैगाम मिल गया।
 </div>
 </div>
 
-<!-- SLIDE 3 FLOATING -->
+<!-- SLIDE 3 -->
 
 <div class="slide">
 
 <div class="overlay"></div>
 
-<img src="us3.jpg" class="float" style="left:10%;animation-delay:0s">
-<img src="us4.jpg" class="float" style="left:30%;animation-delay:2s">
-<img src="us5.jpg" class="float" style="left:50%;animation-delay:4s">
-<img src="us6.jpg" class="float" style="left:70%;animation-delay:1s">
+<img src="us3.jpg" class="float" style="left:8%;animation-delay:0s">
+<img src="us4.jpg" class="float" style="left:28%;animation-delay:2s">
+<img src="us5.jpg" class="float" style="left:48%;animation-delay:4s">
+<img src="us6.jpg" class="float" style="left:68%;animation-delay:1s">
 <img src="us7.jpg" class="float" style="left:85%;animation-delay:3s">
 
-<div>Our Beautiful Memories ❤️</div>
+<div class="text">Our Beautiful Memories ❤️</div>
 
 </div>
 
-<!-- SLIDE 4 FLIP -->
+<!-- SLIDE 4 -->
 
 <div class="slide">
 
-<div style="display:flex;gap:40px;flex-wrap:wrap;justify-content:center">
+<div class="flipWrap">
 
 <div class="flip">
 <div class="flip-inner" id="card1">
-<div class="front">
-<img src="us8.jpg">
-</div>
+<div class="front"><img src="us8.jpg"></div>
 <div class="back">
 तेरी मुस्कान ने दिल में ऐसा उजाला कर दिया,<br>
 अब हर धड़कन कहती है — मैंने तुझसे सच्चा प्यार कर लिया।
@@ -283,9 +298,7 @@ Some people come into life…
 
 <div class="flip">
 <div class="flip-inner" id="card2">
-<div class="front">
-<img src="us9.jpg">
-</div>
+<div class="front"><img src="us9.jpg"></div>
 <div class="back">
 तेरी खूबसूरती का कोई पैमाना नहीं होता,<br>
 तुझे देखूँ तो लगता है जैसे चाँद भी तेरे सामने फीका होता।
@@ -294,78 +307,79 @@ Some people come into life…
 </div>
 
 </div>
-
 </div>
 
-<!-- SLIDE 5 FINAL -->
+<!-- SLIDE 5 -->
 
-<div class="slide" id="finalSlide">
-<div style="font-size:70px;color:#ff2e6e;text-shadow:0 0 40px red;">
-I LOVE YOU KHUSHI ❤️
-</div>
+<div class="slide">
+<div id="love">I LOVE YOU KHUSHI ❤️</div>
 </div>
 
 <script>
 
 let slides=document.querySelectorAll(".slide");
-let index=0;
-
-/* NEXT ON TAP */
-
-document.body.addEventListener("click",()=>{
-
-if(index>=slides.length-1) return;
-
-slides[index].classList.remove("active");
-index++;
-slides[index].classList.add("active");
-
-/* vibration */
-
-if(navigator.vibrate){
-navigator.vibrate(60);
-}
-
-/* auto flip */
-
-if(index===3){
-setTimeout(()=>{
-document.getElementById("card1").classList.add("flipped");
-document.getElementById("card2").classList.add("flipped");
-},10000);
-}
-
-/* finale */
-
-if(index===4){
-finale();
-}
-
-});
+let current=0;
 
 /* PASSWORD */
 
 function unlock(){
 
-if(document.getElementById("pass").value==="Khushi"){
+if(pass.value==="Khushi"){
 
-document.getElementById("lock").style.display="none";
-document.getElementById("song").play();
+lock.style.display="none";
+song.play();
 
 if(navigator.vibrate){
 navigator.vibrate([200,100,300]);
 }
 
+startSlides();
+
 }else{
 alert("Wrong Password ❤️");
 }
+
+}
+
+/* AUTO SLIDES */
+
+function startSlides(){
+
+setInterval(()=>{
+
+slides[current].classList.remove("active");
+current++;
+
+if(current>=slides.length){
+current=slides.length-1;
+return;
+}
+
+slides[current].classList.add("active");
+
+/* flip cards */
+
+if(current===3){
+setTimeout(()=>{
+card1.classList.add("flipped");
+card2.classList.add("flipped");
+},10000);
+}
+
+/* finale */
+
+if(current===4){
+finale();
+}
+
+},13000); // 13 sec
 }
 
 /* HEART EXPLOSION */
 
 function finale(){
 
-for(let i=0;i<150;i++){
+for(let i=0;i<160;i++){
 
 let h=document.createElement("div");
 h.className="heart";
@@ -374,12 +388,12 @@ h.innerHTML="❤️";
 h.style.left="50%";
 h.style.top="50%";
 
-h.style.setProperty('--x',(Math.random()*1200-600)+"px");
-h.style.setProperty('--y',(Math.random()*800-400)+"px");
+h.style.setProperty('--x',(Math.random()*1400-700)+"px");
+h.style.setProperty('--y',(Math.random()*900-450)+"px");
 
 document.body.appendChild(h);
 
-setTimeout(()=>h.remove(),2000);
+setTimeout(()=>h.remove(),2200);
 }
 
 /* meteors */
@@ -388,14 +402,13 @@ setInterval(()=>{
 
 let m=document.createElement("div");
 m.className="meteor";
-
 m.style.left=Math.random()*window.innerWidth+"px";
 
 document.body.appendChild(m);
 
 setTimeout(()=>m.remove(),2000);
 
-},120);
+},100);
 
 }
 
