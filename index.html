@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For My Khushi ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+/* ===== CINEMA INTRO ===== */
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+z-index:999;
+text-align:center;
+}
+
+.fade{
+opacity:0;
+animation:fade 3s forwards;
+}
+
+@keyframes fade{
+to{opacity:1;}
+}
+
+/* FLASH */
+
+.flash{
+position:fixed;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+pointer-events:none;
+}
+
+.flash.active{
+animation:flash .8s;
+}
+
+@keyframes flash{
+0%{opacity:1;}
+100%{opacity:0;}
+}
+
+/* ===== BACKGROUND ===== */
+
+body{
+height:100vh;
+overflow:hidden;
+background:radial-gradient(circle,#3b0202,#000);
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+/* GLASS */
+
+.container{
+display:none;
+padding:35px;
+border-radius:30px;
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.2);
+text-align:center;
+width:92vw;
+max-width:850px;
+animation:zoom 2s;
+}
+
+@keyframes zoom{
+from{opacity:0; transform:scale(.6);}
+to{opacity:1; transform:scale(1);}
+}
+
+/* PHOTO */
+
+.photo{
+width:260px;
+height:260px;
+border-radius:20px;
+overflow:hidden;
+margin:auto;
+border:4px solid #ff4d6d;
+box-shadow:0 0 70px rgba(255,77,109,.8);
+}
+
+.photo img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+/* HEARTS */
+
+.heart{
+position:absolute;
+color:#ff4d6d;
+animation:float 7s linear infinite;
+}
+
+@keyframes float{
+from{transform:translateY(100vh) scale(.5);}
+to{transform:translateY(-10vh) scale(1.8);}
+}
+
+/* BUTTON */
+
+.btn{
+margin-top:25px;
+padding:14px 40px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4d6d,#ff758f);
+color:white;
+font-size:1rem;
+cursor:pointer;
+transition:.4s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+box-shadow:0 0 40px #ff4d6d;
+}
+
+/* SHAYARI */
+
+#shayari{
+display:none;
+margin-top:30px;
+font-size:1.1rem;
+line-height:1.9;
+color:#ffd1dc;
+}
+
+/* RING */
+
+.ring{
+font-size:70px;
+animation:ringPulse 1.2s infinite;
+}
+
+@keyframes ringPulse{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.2);}
+}
+
+/* FINAL LOVE */
+
+#final{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:4rem;
+color:#ff758f;
+text-shadow:0 0 50px white;
+}
+
+/* blast */
+
+.blast{
+position:absolute;
+font-size:35px;
+animation:blast 2s forwards;
+}
+
+@keyframes blast{
+to{
+transform:translate(var(--x),var(--y));
+opacity:0;
+}
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.photo{
+width:70vw;
+height:70vw;
+}
+
+#final{
+font-size:2.5rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+<h2 class="fade">Wear Headphones 🎧</h2>
+<p class="fade" style="animation-delay:2s;">Close Your Eyes… And Tap Start</p>
+<button class="btn fade" style="animation-delay:4s;" onclick="start()">Start</button>
+</div>
+
+<div class="flash" id="flash"></div>
+
+<!-- AUDIO -->
+
+<audio id="song" loop>
+<source src="song.mp3">
+</audio>
+
+<audio id="beat" loop>
+<source src="heartbeat.mp3">
+</audio>
+
+<audio id="whisper">
+<source src="whisper.mp3">
+</audio>
+
+<!-- MAIN -->
+
+<div class="container" id="main">
+
+<div class="photo">
+<img src="us.jpg">
+</div>
+
+<h1 style="margin-top:20px;">Khushi ❤️</h1>
+
+<p style="margin-top:10px;">
+And suddenly… my life became beautiful.
+</p>
+
+<button class="btn" onclick="showShayari()">Continue</button>
+
+<div id="shayari"></div>
+
+<div id="proposal" style="display:none;margin-top:30px;position:relative;">
+<div class="ring">💍</div>
+<h2>Will You Be Mine Forever?</h2>
+
+<button class="btn" onclick="final()">YES ❤️</button>
+<button class="btn" id="no" style="background:#444;position:absolute;" onmouseover="run()">NO</button>
+
+</div>
+
+</div>
+
+<div id="final">I LOVE YOU ❤️</div>
+
+<script>
+
+/* START EXPERIENCE */
+
+function start(){
+
+document.getElementById("flash").classList.add("active");
+
+setTimeout(()=>{
+
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+
+const song=document.getElementById("song");
+const beat=document.getElementById("beat");
+const whisper=document.getElementById("whisper");
+
+song.volume=.35;
+song.play();
+
+beat.play();
+
+/* whisper her name after 2 sec */
+setTimeout(()=>whisper.play(),2000);
+
+/* vibration */
+setInterval(()=>{
+if(navigator.vibrate){
+navigator.vibrate([180,100,180]);
+}
+},1200);
+
+createHearts();
+
+},700);
+
+}
+
+/* FLOATING HEARTS */
+
+function createHearts(){
+
+setInterval(()=>{
+
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*30+10)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),7000);
+
+},350);
+
+}
+
+/* SHAYARI TYPE */
+
+const text=`तेरे आने से मेरी ज़िंदगी को नया मुकाम मिल गया,
+सूने रास्तों पर जैसे खुशियों का पैगाम मिल गया।
+पहले हर दिन बस यूँ ही गुजर जाता था,
+अब हर पल में तेरा ही नाम मिल गया।`;
+
+function showShayari(){
+
+const box=document.getElementById("shayari");
+box.style.display="block";
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+box.innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,38);
+}else{
+document.getElementById("proposal").style.display="block";
+}
+}
+
+type();
+
+}
+
+/* NO BUTTON ESCAPE */
+
+function run(){
+
+const b=document.getElementById("no");
+
+b.style.left=Math.random()*200-100+"px";
+b.style.top=Math.random()*100+"px";
+
+}
+
+/* FINAL */
+
+function final(){
+
+document.getElementById("main").style.display="none";
+document.getElementById("final").style.display="block";
+
+/* LOVE BLAST */
+
+for(let i=0;i<100;i++){
+
+setTimeout(()=>{
+
+const e=document.createElement("div");
+e.className="blast";
+e.innerHTML="❤️";
+
+e.style.left="50vw";
+e.style.top="50vh";
+
+e.style.setProperty("--x",(Math.random()-0.5)*1200+"px");
+e.style.setProperty("--y",(Math.random()-0.5)*900+"px");
+
+document.body.appendChild(e);
+
+setTimeout(()=>e.remove(),2000);
+
+},i*25);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
