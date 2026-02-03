@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Khushi ❤️</title>
+
+<title>Promise Day ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
@@ -10,214 +14,163 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:black;
 overflow:hidden;
+background:black;
 }
 
-/* SLIDES */
+/* PASSWORD SCREEN */
 
-.slide{
+#lockScreen{
 position:fixed;
-width:100%;
 height:100vh;
+width:100%;
+background:linear-gradient(135deg,#000,#1a001a);
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 color:white;
-text-align:center;
-opacity:0;
-transition:2s;
-}
-
-.active{
-opacity:1;
-}
-
-/* PASSWORD */
-
-#lock{
-position:fixed;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-
-.lockBox{
-background:rgba(255,0,80,.08);
-padding:40px;
-border-radius:20px;
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,0,80,.4);
+z-index:999;
 }
 
 input{
-padding:14px;
+padding:12px;
 border:none;
-border-radius:10px;
+border-radius:8px;
+margin-top:10px;
+width:220px;
 text-align:center;
+font-size:16px;
 }
 
 button{
-margin-top:15px;
-padding:12px 24px;
+padding:10px 25px;
 border:none;
-border-radius:30px;
-background:#ff2e6e;
+border-radius:8px;
+margin-top:12px;
+background:#ff2e63;
 color:white;
-font-weight:bold;
+font-size:16px;
 cursor:pointer;
+transition:.3s;
 }
 
-/* BACKGROUND IMAGE */
+button:hover{
+background:#ff004c;
+transform:scale(1.05);
+}
 
-.bg{
-position:absolute;
+/* SLIDES */
+
+.slider{
+position:relative;
+height:100vh;
 width:100%;
-height:100%;
-object-fit:cover;
-z-index:-2;
-animation:zoom 14s ease-in-out infinite alternate;
+display:none;
 }
 
-@keyframes zoom{
-from{transform:scale(1)}
-to{transform:scale(1.18)}
+.slide{
+position:absolute;
+height:100%;
+width:100%;
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+opacity:0;
+transform:scale(1.2);
+transition:2s;
+}
+
+.slide.active{
+opacity:1;
+transform:scale(1);
 }
 
 .overlay{
 position:absolute;
-width:100%;
 height:100%;
+width:100%;
 background:rgba(0,0,0,.55);
-z-index:-1;
 }
 
-/* TEXT */
-
-.text{
-font-size:38px;
-max-width:900px;
-padding:20px;
-text-shadow:0 0 20px black;
-}
-
-@media(max-width:768px){
-.text{font-size:24px}
-}
-
-/* FLOATING MEMORIES */
-
-.float{
-position:absolute;
-width:150px;
-border-radius:20px;
-animation:float 12s linear infinite;
-}
-
-@keyframes float{
-from{transform:translateY(110vh)}
-to{transform:translateY(-120vh)}
-}
-
-/* FLIP CARDS */
-
-.flipWrap{
-display:flex;
-gap:60px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.flip{
-width:260px;
-height:360px;
-perspective:1000px;
-}
-
-.flip-inner{
-width:100%;
-height:100%;
+.content{
 position:relative;
-transform-style:preserve-3d;
-transition:1.5s;
+color:white;
+max-width:900px;
+animation:fadeUp 2s;
 }
 
-.flipped{
-transform:rotateY(180deg);
+h1{
+font-family:'Great Vibes',cursive;
+font-size:clamp(42px,7vw,90px);
+margin-bottom:20px;
 }
 
-.front,.back{
-position:absolute;
+p{
+font-size:clamp(18px,2.5vw,26px);
+line-height:1.6;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* SURPRISE */
+
+#surprise{
+position:fixed;
+height:100vh;
 width:100%;
-height:100%;
-backface-visibility:hidden;
-border-radius:20px;
-overflow:hidden;
-border:3px solid #ff2e6e;
-}
-
-.front img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.back{
-background:#1a0006;
-transform:rotateY(180deg);
-display:flex;
+background:black;
+display:none;
 justify-content:center;
 align-items:center;
-padding:20px;
-font-size:20px;
-color:#ffb3c6;
+flex-direction:column;
+color:white;
+z-index:500;
+text-align:center;
 }
 
-/* FINAL */
-
-#love{
-font-size:75px;
-color:#ff2e6e;
-text-shadow:0 0 40px red;
+#surprise h1{
+font-size:clamp(45px,8vw,95px);
+color:#ff2e63;
+animation:heartbeat 1s infinite;
 }
 
-/* HEART EXPLOSION */
+@keyframes heartbeat{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.15);}
+}
 
-.heart{
+/* FIREWORKS */
+
+canvas{
 position:absolute;
-font-size:30px;
-animation:explode 2.2s forwards;
+top:0;
+left:0;
 }
 
-@keyframes explode{
-to{
-transform:translate(var(--x),var(--y)) scale(.2);
-opacity:0;
-}
-}
+/* MOBILE OPTIMIZATION */
 
-/* METEOR */
-
-.meteor{
-position:absolute;
-width:3px;
-height:140px;
-background:linear-gradient(pink,red,transparent);
-animation:meteor 2s linear infinite;
+@media(max-width:768px){
+p{
+font-size:18px;
 }
-
-@keyframes meteor{
-from{transform:translateY(-200px)}
-to{transform:translateY(100vh) translateX(-300px);opacity:0;}
 }
 
 </style>
@@ -225,191 +178,167 @@ to{transform:translateY(100vh) translateX(-300px);opacity:0;}
 
 <body>
 
-<audio id="song" loop>
-<source src="song.mp3" type="audio/mpeg">
-</audio>
-
 <!-- PASSWORD -->
-
-<div id="lock">
-<div class="lockBox">
-<h2 style="color:white">Enter Love Password ❤️</h2>
-<input id="pass" type="password">
-<br>
+<div id="lockScreen">
+<h2>Enter Password ❤️</h2>
+<input type="password" id="password" placeholder="Password">
 <button onclick="unlock()">Unlock</button>
 </div>
-</div>
 
-<!-- SLIDE 1 -->
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="song2.mp3" type="audio/mp3">
+</audio>
 
-<div class="slide active">
-<img src="us.jpeg" class="bg">
+<!-- SLIDER -->
+<div class="slider" id="slider">
+
+<!-- FIRST SLIDE -->
+<div class="slide active" style="background-image:url('us.jpg')">
 <div class="overlay"></div>
 
-<div class="text">
-Some people enter life…<br><br>
-<strong>You became my forever ❤️</strong>
+<div class="content">
+<h1>Happy Promise Day My Love ❤️</h1>
+
+<p>
+On this Promise Day,  
+I don’t promise you perfection…  
+But I promise to stand beside you in every phase of life.  
+
+To hold your hand when things get hard,  
+To celebrate you when life feels beautiful,  
+And to love you a little more with every passing day.
+</p>
 </div>
 </div>
 
-<!-- SLIDE 2 -->
-
-<div class="slide">
-<img src="us2.jpg" class="bg">
+<!-- SECOND SLIDE -->
+<div class="slide" style="background-image:url('us.jpg')">
 <div class="overlay"></div>
 
-<div class="text">
-तेरे आने से मेरी ज़िंदगी को नया मुकाम मिल गया,<br>
-सूने रास्तों पर जैसे खुशियों का पैगाम मिल गया।
-</div>
-</div>
+<div class="content">
+<h1>My Forever Promise</h1>
 
-<!-- SLIDE 3 -->
+<p>
+No matter where life takes us,  
+You will always find me choosing you.  
 
-<div class="slide">
-
-<div class="overlay"></div>
-
-<img src="us3.jpg" class="float" style="left:8%;animation-delay:0s">
-<img src="us4.jpg" class="float" style="left:28%;animation-delay:2s">
-<img src="us5.jpg" class="float" style="left:48%;animation-delay:4s">
-<img src="us6.jpg" class="float" style="left:68%;animation-delay:1s">
-<img src="us7.jpg" class="float" style="left:85%;animation-delay:3s">
-
-<div class="text">Our Beautiful Memories ❤️</div>
-
-</div>
-
-<!-- SLIDE 4 -->
-
-<div class="slide">
-
-<div class="flipWrap">
-
-<div class="flip">
-<div class="flip-inner" id="card1">
-<div class="front"><img src="us8.jpg"></div>
-<div class="back">
-तेरी मुस्कान ने दिल में ऐसा उजाला कर दिया,<br>
-अब हर धड़कन कहती है — मैंने तुझसे सच्चा प्यार कर लिया।
-</div>
-</div>
-</div>
-
-<div class="flip">
-<div class="flip-inner" id="card2">
-<div class="front"><img src="us9.jpg"></div>
-<div class="back">
-तेरी खूबसूरती का कोई पैमाना नहीं होता,<br>
-तुझे देखूँ तो लगता है जैसे चाँद भी तेरे सामने फीका होता।
-</div>
+In every lifetime,  
+In every universe —  
+It will always be **YOU.**
+</p>
 </div>
 </div>
 
 </div>
-</div>
 
-<!-- SLIDE 5 -->
-
-<div class="slide">
-<div id="love">I LOVE YOU KHUSHI ❤️</div>
+<!-- SURPRISE -->
+<div id="surprise">
+<canvas id="fireworks"></canvas>
+<h1>I Love You ❤️</h1>
+<p>Forever & Always</p>
 </div>
 
 <script>
 
-let slides=document.querySelectorAll(".slide");
-let current=0;
-
-/* PASSWORD */
-
 function unlock(){
+let pass=document.getElementById("password").value;
 
-if(pass.value==="Khushi"){
+if(pass==="Love"){
 
-lock.style.display="none";
-song.play();
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("slider").style.display="block";
 
-if(navigator.vibrate){
-navigator.vibrate([200,100,300]);
-}
+let music=document.getElementById("music");
+music.play().catch(()=>{});
 
 startSlides();
 
 }else{
 alert("Wrong Password ❤️");
 }
-
 }
-
-/* AUTO SLIDES */
 
 function startSlides(){
 
-setInterval(()=>{
-
-slides[current].classList.remove("active");
-current++;
-
-if(current>=slides.length){
-current=slides.length-1;
-return;
-}
-
-slides[current].classList.add("active");
-
-/* flip cards */
-
-if(current===3){
-setTimeout(()=>{
-card1.classList.add("flipped");
-card2.classList.add("flipped");
-},10000);
-}
-
-/* finale */
-
-if(current===4){
-finale();
-}
-
-},13000); // 13 sec
-}
-
-/* HEART EXPLOSION */
-
-function finale(){
-
-for(let i=0;i<160;i++){
-
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="❤️";
-
-h.style.left="50%";
-h.style.top="50%";
-
-h.style.setProperty('--x',(Math.random()*1400-700)+"px");
-h.style.setProperty('--y',(Math.random()*900-450)+"px");
-
-document.body.appendChild(h);
-
-setTimeout(()=>h.remove(),2200);
-}
-
-/* meteors */
+let slides=document.querySelectorAll(".slide");
+let index=0;
 
 setInterval(()=>{
 
-let m=document.createElement("div");
-m.className="meteor";
-m.style.left=Math.random()*window.innerWidth+"px";
+slides[index].classList.remove("active");
+index++;
 
-document.body.appendChild(m);
+if(index<slides.length){
+slides[index].classList.add("active");
+}
+else{
+showSurprise();
+}
 
-setTimeout(()=>m.remove(),2000);
+},8000);
+}
 
-},100);
+function showSurprise(){
 
+document.getElementById("slider").style.display="none";
+document.getElementById("surprise").style.display="flex";
+
+startFireworks();
+}
+
+/* FIREWORKS */
+
+function startFireworks(){
+
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function createFirework(x,y){
+for(let i=0;i<100;i++){
+particles.push({
+x:x,
+y:y,
+speedX:(Math.random()-0.5)*6,
+speedY:(Math.random()-0.5)*6,
+life:100
+});
+}
+}
+
+setInterval(()=>{
+createFirework(
+Math.random()*canvas.width,
+Math.random()*canvas.height/2
+);
+},700);
+
+function animate(){
+ctx.fillStyle="rgba(0,0,0,0.2)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,i)=>{
+p.x+=p.speedX;
+p.y+=p.speedY;
+p.life--;
+
+ctx.fillStyle="hsl("+Math.random()*360+",100%,60%)";
+ctx.fillRect(p.x,p.y,3,3);
+
+if(p.life<=0){
+particles.splice(i,1);
+}
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
 }
 
 </script>
