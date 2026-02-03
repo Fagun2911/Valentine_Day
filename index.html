@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>For My Khushi ❤️</title>
@@ -17,8 +16,30 @@ font-family:'Segoe UI',sans-serif;
 
 body{
 background:black;
-overflow-x:hidden;
+overflow:hidden;
+}
+
+/* SLIDES */
+
+.slide{
+position:fixed;
+width:100%;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
 color:white;
+font-size:28px;
+text-align:center;
+opacity:0;
+pointer-events:none;
+transition:1.5s;
+}
+
+.active{
+opacity:1;
+pointer-events:auto;
 }
 
 /* PASSWORD */
@@ -27,125 +48,97 @@ color:white;
 position:fixed;
 width:100%;
 height:100%;
-background:linear-gradient(45deg,#140101,#2b0000,#000);
+background:black;
 display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
 }
 
-.lock-box{
-backdrop-filter:blur(20px);
-background:rgba(255,0,60,.08);
+.lockBox{
+background:rgba(255,0,80,.08);
 padding:40px;
 border-radius:20px;
-text-align:center;
+backdrop-filter:blur(20px);
 border:1px solid rgba(255,0,80,.4);
 }
 
 input{
 padding:14px;
-border-radius:10px;
 border:none;
-width:220px;
+border-radius:10px;
 text-align:center;
-font-size:18px;
-outline:none;
 }
 
 button{
-padding:12px 26px;
+margin-top:15px;
+padding:12px 24px;
 border:none;
 border-radius:30px;
-background:#ff004c;
+background:#ff2e6e;
 color:white;
 font-weight:bold;
-cursor:pointer;
-margin-top:15px;
 }
 
-/* HERO */
+/* BACKGROUND IMAGES */
 
-.hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:url('us5.jpg') center/cover;
-position:relative;
-}
-
-.hero::after{
-content:'';
+.bg{
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.65);
+object-fit:cover;
+z-index:-2;
+animation:zoom 12s ease-in-out infinite alternate;
 }
 
-.hero-content{
-position:relative;
-z-index:2;
-animation:fade 3s ease;
+@keyframes zoom{
+from{transform:scale(1)}
+to{transform:scale(1.15)}
 }
 
-@keyframes fade{
-from{opacity:0; transform:translateY(40px)}
-to{opacity:1}
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+z-index:-1;
 }
 
-.hero h1{
-font-size:60px;
-color:#ff2e6e;
-text-shadow:0 0 40px #ff2e6e;
+/* FLOATING IMAGES */
+
+.float{
+position:absolute;
+width:140px;
+border-radius:18px;
+animation:float 10s linear infinite;
 }
 
-.hero p{
-margin-top:20px;
-font-size:22px;
-max-width:700px;
+@keyframes float{
+from{transform:translateY(100vh)}
+to{transform:translateY(-120vh)}
 }
 
-/* SHAYARI */
-
-.shayari{
-padding:120px 10%;
-text-align:center;
-line-height:2;
-font-size:22px;
-color:#ffb3c6;
-}
-
-/* GALLERY */
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:50px;
-padding:100px 8%;
-}
+/* FLIP CARD */
 
 .flip{
-height:320px;
+width:260px;
+height:360px;
 perspective:1000px;
 }
 
 .flip-inner{
-position:relative;
 width:100%;
 height:100%;
-transition:1s;
+position:relative;
 transform-style:preserve-3d;
+transition:1.5s;
 }
 
-.flip:hover .flip-inner{
+.flip-inner.flipped{
 transform:rotateY(180deg);
 }
 
-.flip-front,
-.flip-back{
+.front, .back{
 position:absolute;
 width:100%;
 height:100%;
@@ -155,71 +148,24 @@ overflow:hidden;
 border:3px solid #ff2e6e;
 }
 
-.flip-front img{
+.front img{
 width:100%;
 height:100%;
 object-fit:cover;
 }
 
-.flip-back{
+.back{
 background:#1a0006;
 transform:rotateY(180deg);
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 padding:20px;
-font-size:18px;
+font-size:20px;
+color:#ffb3c6;
 }
 
-/* PROPOSAL */
-
-.proposal{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.proposal h2{
-font-size:50px;
-color:#ff2e6e;
-}
-
-.yes{
-background:#ff2e6e;
-}
-
-.no{
-background:gray;
-position:absolute;
-}
-
-/* FINAL */
-
-#final{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:999;
-}
-
-#loveText{
-font-size:80px;
-color:#ff2e6e;
-text-shadow:0 0 40px red;
-z-index:5;
-}
-
-/* HEARTS */
+/* HEART EXPLOSION */
 
 .heart{
 position:absolute;
@@ -240,31 +186,20 @@ opacity:0;
 position:absolute;
 width:3px;
 height:120px;
-background:linear-gradient(pink,transparent);
+background:linear-gradient(pink,red,transparent);
 animation:meteor 2s linear infinite;
 }
 
 @keyframes meteor{
-from{
-transform:translateY(-200px) translateX(0);
-opacity:1;
+from{transform:translateY(-200px)}
+to{transform:translateY(100vh) translateX(-300px);opacity:0;}
 }
-to{
-transform:translateY(100vh) translateX(-300px);
-opacity:0;
-}
-}
+
+/* MOBILE */
 
 @media(max-width:768px){
-
-.hero h1{
-font-size:38px;
-}
-
-#loveText{
-font-size:42px;
-}
-
+.slide{font-size:20px;padding:20px}
+.flip{width:200px;height:300px}
 }
 
 </style>
@@ -279,123 +214,158 @@ font-size:42px;
 <!-- PASSWORD -->
 
 <div id="lock">
-<div class="lock-box">
-<h2>Enter Love Password ❤️</h2>
+<div class="lockBox">
+<h2 style="color:white">Enter Love Password ❤️</h2>
 <input id="pass" type="password">
 <br>
 <button onclick="unlock()">Unlock</button>
 </div>
 </div>
 
-<!-- HERO -->
+<!-- SLIDE 1 -->
 
-<section class="hero">
-<div class="hero-content">
-<h1>My Khushi ❤️</h1>
-<p>You didn’t just enter my life…  
-You changed it forever.</p>
+<div class="slide active">
+<img src="us.jpg" class="bg">
+<div class="overlay"></div>
+
+<div>
+Some people come into life…  
+<br><br>
+<strong>You became my life ❤️</strong>
 </div>
-</section>
+</div>
 
-<!-- SHAYARI -->
+<!-- SLIDE 2 -->
 
-<div class="shayari">
+<div class="slide">
+<img src="us2.jpg" class="bg">
+<div class="overlay"></div>
 
-<p>
+<div>
 तेरे आने से मेरी ज़िंदगी को नया मुकाम मिल गया,<br>
 सूने रास्तों पर जैसे खुशियों का पैगाम मिल गया।
-</p>
+</div>
+</div>
 
-<br><br>
+<!-- SLIDE 3 FLOATING -->
 
-<p>
+<div class="slide">
+
+<div class="overlay"></div>
+
+<img src="us3.jpg" class="float" style="left:10%;animation-delay:0s">
+<img src="us4.jpg" class="float" style="left:30%;animation-delay:2s">
+<img src="us5.jpg" class="float" style="left:50%;animation-delay:4s">
+<img src="us6.jpg" class="float" style="left:70%;animation-delay:1s">
+<img src="us7.jpg" class="float" style="left:85%;animation-delay:3s">
+
+<div>Our Beautiful Memories ❤️</div>
+
+</div>
+
+<!-- SLIDE 4 FLIP -->
+
+<div class="slide">
+
+<div style="display:flex;gap:40px;flex-wrap:wrap;justify-content:center">
+
+<div class="flip">
+<div class="flip-inner" id="card1">
+<div class="front">
+<img src="us8.jpg">
+</div>
+<div class="back">
 तेरी मुस्कान ने दिल में ऐसा उजाला कर दिया,<br>
 अब हर धड़कन कहती है — मैंने तुझसे सच्चा प्यार कर लिया।
-</p>
+</div>
+</div>
+</div>
 
-<br><br>
-
-<p>
+<div class="flip">
+<div class="flip-inner" id="card2">
+<div class="front">
+<img src="us9.jpg">
+</div>
+<div class="back">
 तेरी खूबसूरती का कोई पैमाना नहीं होता,<br>
 तुझे देखूँ तो लगता है जैसे चाँद भी तेरे सामने फीका होता।
-</p>
+</div>
+</div>
+</div>
 
 </div>
 
-<!-- GALLERY -->
+</div>
 
-<section class="gallery">
+<!-- SLIDE 5 FINAL -->
+
+<div class="slide" id="finalSlide">
+<div style="font-size:70px;color:#ff2e6e;text-shadow:0 0 40px red;">
+I LOVE YOU KHUSHI ❤️
+</div>
+</div>
 
 <script>
-for(let i=1;i<=9;i++){
-document.write(`
-<div class="flip">
-<div class="flip-inner">
-<div class="flip-front">
-<img src="us${i}.jpg">
-</div>
-<div class="flip-back">
-Our Beautiful Memory ❤️
-</div>
-</div>
-</div>
-`)
+
+let slides=document.querySelectorAll(".slide");
+let index=0;
+
+/* NEXT ON TAP */
+
+document.body.addEventListener("click",()=>{
+
+if(index>=slides.length-1) return;
+
+slides[index].classList.remove("active");
+index++;
+slides[index].classList.add("active");
+
+/* vibration */
+
+if(navigator.vibrate){
+navigator.vibrate(60);
 }
-</script>
 
-</section>
+/* auto flip */
 
-<!-- PROPOSAL -->
+if(index===3){
+setTimeout(()=>{
+document.getElementById("card1").classList.add("flipped");
+document.getElementById("card2").classList.add("flipped");
+},10000);
+}
 
-<div class="proposal">
-<h2>Will You Be Mine Forever?</h2>
-<br>
-<button class="yes" onclick="finale()">YES ❤️</button>
-</div>
+/* finale */
 
-<!-- FINAL -->
+if(index===4){
+finale();
+}
 
-<div id="final">
-<h1 id="loveText">I LOVE YOU KHUSHI ❤️</h1>
-</div>
+});
 
-<script>
+/* PASSWORD */
 
 function unlock(){
 
 if(document.getElementById("pass").value==="Khushi"){
 
 document.getElementById("lock").style.display="none";
-
 document.getElementById("song").play();
 
-/* vibration */
-
 if(navigator.vibrate){
-navigator.vibrate([300,100,300,100,600]);
+navigator.vibrate([200,100,300]);
 }
 
-}
-else{
+}else{
 alert("Wrong Password ❤️");
 }
 }
 
-/* FINALE */
+/* HEART EXPLOSION */
 
 function finale(){
 
-document.getElementById("final").style.display="flex";
-
-/* vibration stronger */
-
-if(navigator.vibrate){
-navigator.vibrate([500,200,500,200,1000]);
-}
-
-/* hearts */
-
-for(let i=0;i<120;i++){
+for(let i=0;i<150;i++){
 
 let h=document.createElement("div");
 h.className="heart";
